@@ -26,7 +26,7 @@ var movies []Movie
 
 func testApi(w http.ResponseWriter, r *http.Request)  {
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode("Hello from new api")
+	json.NewEncoder(w).Encode("Hello from updated api using Docker")
 }
 
 func getMovies(w http.ResponseWriter, r *http.Request) {
@@ -99,6 +99,7 @@ func main() {
 	r.HandleFunc("/movies/{id}", updateMovie).Methods("PUT")
 	r.HandleFunc("/movies/{id}", deleteMovie).Methods("DELETE")
 	r.HandleFunc("/api", testApi).Methods("GET")
+
 
 	fmt.Printf("Starting server at port 8080\n")
 	log.Fatal(http.ListenAndServe(":8080",r))
