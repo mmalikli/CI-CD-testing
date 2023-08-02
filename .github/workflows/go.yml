@@ -8,10 +8,6 @@ jobs:
   build_and_run:
     name: Build and Run Go Backend
     runs-on: self-hosted
-    # services:
-    #   docker:
-    #     image: docker:dind
-    #     options: --privileged
 
     steps:
     - name: Checkout code
@@ -23,22 +19,15 @@ jobs:
         go-version: '1.20.5'
 
     - name: Fetch Dependencies
-      run: go get -v -t -d .
+      run: go get -v -t -d ./...
 
     - name: Build
-      run: go build .
+      run: go build ./...
 
     # - name: Run Tests
     #   run: go test ./...
-    # Install Docker CLI
-    # - name: Install Docker
-    #   run: |
-    #     curl -fsSL https://get.docker.com -o get-docker.sh
-    #     sh get-docker.sh
 
-    - name: Deploy with Docker
+    - name: Start Go Backend
       run: |
-        # Build the Docker image using the Dockerfile in the current directory
-        docker build -t go-backend .
-        # Run the Docker container in detached mode, mapping port 8080 from the container to the host
-        docker run -d -p 8080:8080 go-backend
+        # Start your Go backend API here
+        nohup ./crud-project > backend.log 2>&1 &
