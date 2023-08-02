@@ -30,4 +30,4 @@ jobs:
     - name: Start Go Backend
       run: |
         # Start your Go backend API here
-        ./crud-project
+        ./crud-project &
