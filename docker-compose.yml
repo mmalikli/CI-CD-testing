@@ -1,0 +1,7 @@
+version: '3'
+services:
+  your-app:
+    image: 
+    ports:
+      - "8080:8080"
+    # Add other configurations as needed

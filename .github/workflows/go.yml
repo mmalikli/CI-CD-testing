@@ -27,18 +27,19 @@ jobs:
 
     - name: Build
       run: go build .
-
-    # - name: Run Tests
-    #   run: go test ./...
-    # Install Docker CLI
-    # - name: Install Docker
-    #   run: |
-    #     curl -fsSL https://get.docker.com -o get-docker.sh
-    #     sh get-docker.sh
-
+    
+    - name: Prepare new Docker image
+      run: docker build -t go-backend .
+    
+    - name: Remove the previous Backend Container
+      run: |
+        CONTAINER_ID=$(docker ps -q -f "label=backend")
+        if [ -n "$CONTAINER_ID" ]; then
+          docker stop $CONTAINER_ID
+          docker rm $CONTAINER_ID
+        fi
+        
     - name: Deploy with Docker
       run: |
-        # Build the Docker image using the Dockerfile in the current directory
-        docker build -t go-backend .
         # Run the Docker container in detached mode, mapping port 8080 from the container to the host
-        docker run -d -p 8080:8080 go-backend
+        docker run -d -l backend -p 8080:8080 go-backend
