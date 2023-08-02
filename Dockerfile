@@ -8,7 +8,7 @@ WORKDIR /backend
 COPY . .
 
 # Build the Go application inside the container
-RUN go build -o backend ./path/to/your/backend
+RUN go build -o backend .
 
 # Expose the port that your Go backend listens on
 EXPOSE 8080
