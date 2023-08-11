@@ -1,1 +1,1 @@
-Testing CI/CD pipeline functionality
+Testing CI/CD pipeline functionality on a self-hosted runner
