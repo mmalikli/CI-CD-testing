@@ -28,18 +28,18 @@ jobs:
     - name: Build
       run: go build .
     
-    - name: Prepare new Docker image
-      run: docker build -t go-backend .
+#     - name: Prepare new Docker image
+#       run: docker build -t go-backend .
     
-    - name: Remove the previous Backend Container
-      run: |
-        CONTAINER_ID=$(docker ps -q -f "label=backend")
-        if [ -n "$CONTAINER_ID" ]; then
-          docker stop $CONTAINER_ID
-          docker rm $CONTAINER_ID
-        fi
+#     - name: Remove the previous Backend Container
+#       run: |
+#         CONTAINER_ID=$(docker ps -q -f "label=backend")
+#         if [ -n "$CONTAINER_ID" ]; then
+#           docker stop $CONTAINER_ID
+#           docker rm $CONTAINER_ID
+#         fi
         
-    - name: Deploy with Docker
-      run: |
-        # Run the Docker container in detached mode, mapping port 8080 from the container to the host
-        docker run -d -l backend -p 8080:8080 go-backend
+#     - name: Deploy with Docker
+#       run: |
+#         # Run the Docker container in detached mode, mapping port 8080 from the container to the host
+#         docker run -d -l backend -p 8080:8080 go-backend
