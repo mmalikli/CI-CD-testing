@@ -28,6 +28,9 @@ jobs:
     - name: Build
       run: go build .
     
+    - name: PWD
+      run: pwd
+    
 #     - name: Prepare new Docker image
 #       run: docker build -t go-backend .
     
